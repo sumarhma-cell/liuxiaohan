@@ -47,9 +47,14 @@ function header(active) {
 function footer() {
   return `
     <section class="cta-band reveal">
+      <span class="blob blob-cta" aria-hidden="true"></span>
       <h2>开放合作</h2>
+      <svg class="scribble" viewBox="0 0 160 18" aria-hidden="true">
+        <path d="M2 10 C28 2, 52 16, 80 9 S132 3, 158 11" fill="none" stroke="#3d2a16" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
       <p>品牌升级、活动视觉、插画与 IP，都可以从一封邮件开始。</p>
-      <a class="pill dark magnetic" href="mailto:${EMAIL}">联系合作</a>
+      <a class="pill dark magnetic" href="https://wx.mail.qq.com/?cancel_login=true&from=upexpected_login_redirect" target="_blank" rel="noopener noreferrer">联系合作</a>
+      <p class="cta-mail">${EMAIL}</p>
     </section>
     <footer class="site-footer">
       <div class="footer-grid">
@@ -118,9 +123,19 @@ function home() {
     ${header("home")}
     <section class="split-hero">
       <div class="panel bg-dusty">
+        <svg class="doodle doodle-petal" viewBox="0 0 32 32" aria-hidden="true">
+          <g fill="#f3d0d8">
+            <ellipse cx="16" cy="9" rx="5" ry="7"/>
+            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(72 16 16)"/>
+            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(144 16 16)"/>
+            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(216 16 16)"/>
+            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(288 16 16)"/>
+          </g>
+          <circle cx="16" cy="16" r="3.4" fill="#f6e7c8"/>
+        </svg>
         <div class="hero-copy">
           <p class="hero-kicker">Brand · Illustration · Visual · IP</p>
-          <h1>做出让人记住的设计，<br />而不是被遗忘的画面。</h1>
+          <h1>做出让人记住的设计<br />而不是被遗忘的画面</h1>
           <a class="pill magnetic" href="#/work">查看作品</a>
         </div>
       </div>
@@ -128,10 +143,18 @@ function home() {
     </section>
     ${aboutBody()}
     ${valuesSection()}
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · 品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · </span>
-        <span>品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · 品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · </span>
+    <div class="marquee-stack" aria-hidden="true">
+      <div class="marquee">
+        <div class="marquee-track">
+          <span>品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · 品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · </span>
+          <span>品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · 品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · </span>
+        </div>
+      </div>
+      <div class="marquee marquee-alt">
+        <div class="marquee-track reverse">
+          <span>nothing forgettable · everything considered · nothing forgettable · everything considered · </span>
+          <span>nothing forgettable · everything considered · nothing forgettable · everything considered · </span>
+        </div>
       </div>
     </div>
     ${footer()}
@@ -141,7 +164,13 @@ function home() {
 function aboutBody() {
   return `
     <div class="about-art reveal">
+      <svg class="doodle doodle-star" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#c9d2b8" d="M12 1.8l1.6 6.4 6.4 1.6-6.4 1.6-1.6 6.4-1.6-6.4-6.4-1.6 6.4-1.6z"/>
+      </svg>
       <img src="${ABOUT_ART}" alt="" />
+      <svg class="doodle doodle-loop" viewBox="0 0 80 28" aria-hidden="true">
+        <path d="M4 18 C18 4, 36 26, 52 10 S74 6, 76 16" fill="none" stroke="#e8b7c8" stroke-width="2" stroke-linecap="round"/>
+      </svg>
     </div>
     <div class="about-wrap reveal">
       <p class="hello">Hello</p>
@@ -202,12 +231,23 @@ function work(cat) {
     ${header(cat === "all" ? "work" : cat)}
     <section class="split-hero split-hero--short">
       <div class="panel bg-rose">
+        <span class="blob blob-work" aria-hidden="true"></span>
         <div class="hero-copy">
           <h1>${title}</h1>
           <p class="lede">品牌、视觉、插画与 IP。点击封面进入完整项目。</p>
         </div>
       </div>
       <div class="panel bg-dusty">
+        <svg class="doodle doodle-petal doodle-work" viewBox="0 0 32 32" aria-hidden="true">
+          <g fill="#f3d0d8">
+            <ellipse cx="16" cy="9" rx="5" ry="7"/>
+            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(72 16 16)"/>
+            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(144 16 16)"/>
+            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(216 16 16)"/>
+            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(288 16 16)"/>
+          </g>
+          <circle cx="16" cy="16" r="3.4" fill="#f6e7c8"/>
+        </svg>
         <div class="hero-copy">
           <h1>不求花哨。<br />只做能落地的系统。</h1>
         </div>
@@ -266,9 +306,20 @@ function about() {
     ${header("about")}
     <section class="split-hero">
       <div class="panel bg-dusty">
+        <span class="blob blob-hero" aria-hidden="true"></span>
+        <svg class="doodle doodle-petal" viewBox="0 0 32 32" aria-hidden="true">
+          <g fill="#f3d0d8">
+            <ellipse cx="16" cy="9" rx="5" ry="7"/>
+            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(72 16 16)"/>
+            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(144 16 16)"/>
+            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(216 16 16)"/>
+            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(288 16 16)"/>
+          </g>
+          <circle cx="16" cy="16" r="3.4" fill="#f6e7c8"/>
+        </svg>
         <div class="hero-copy">
           <p class="hero-kicker">Brand · Illustration · Visual · IP</p>
-          <h1>做出让人记住的设计，<br />而不是被遗忘的画面。</h1>
+          <h1>做出让人记住的设计<br />而不是被遗忘的画面</h1>
           <a class="pill magnetic" href="#/work">查看作品</a>
         </div>
       </div>
@@ -276,6 +327,20 @@ function about() {
     </section>
     ${aboutBody()}
     ${valuesSection()}
+    <div class="marquee-stack" aria-hidden="true">
+      <div class="marquee">
+        <div class="marquee-track">
+          <span>品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · 品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · </span>
+          <span>品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · 品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · </span>
+        </div>
+      </div>
+      <div class="marquee marquee-alt">
+        <div class="marquee-track reverse">
+          <span>nothing forgettable · everything considered · nothing forgettable · everything considered · </span>
+          <span>nothing forgettable · everything considered · nothing forgettable · everything considered · </span>
+        </div>
+      </div>
+    </div>
     ${footer()}
   `;
 }
@@ -284,6 +349,17 @@ function contact() {
   return `
     ${header("contact")}
     <section class="contact-hero">
+      <span class="blob blob-hero" aria-hidden="true"></span>
+      <svg class="doodle doodle-petal doodle-contact" viewBox="0 0 32 32" aria-hidden="true">
+        <g fill="#f3d0d8">
+          <ellipse cx="16" cy="9" rx="5" ry="7"/>
+          <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(72 16 16)"/>
+          <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(144 16 16)"/>
+          <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(216 16 16)"/>
+          <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(288 16 16)"/>
+        </g>
+        <circle cx="16" cy="16" r="3.4" fill="#f6e7c8"/>
+      </svg>
       <div class="hero-copy">
         <h1>Call me,<br />write me.</h1>
         <a class="mail" href="mailto:${EMAIL}">${EMAIL}</a>
@@ -312,7 +388,10 @@ function bindReveals() {
     },
     { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
   );
-  nodes.forEach((el) => io.observe(el));
+  nodes.forEach((el, i) => {
+    el.style.transitionDelay = `${Math.min(i * 0.07, 0.42)}s`;
+    io.observe(el);
+  });
 }
 
 function bindCardSpotlights() {
@@ -336,6 +415,19 @@ function bindMagnetic() {
     });
     el.addEventListener("pointerleave", () => {
       el.style.transform = "";
+    });
+  });
+}
+
+function bindLightbox() {
+  document.querySelectorAll(".gallery-item").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const src = btn.getAttribute("data-src");
+      const overlay = document.createElement("div");
+      overlay.className = "lightbox";
+      overlay.innerHTML = `<img src="${src}" alt="" />`;
+      overlay.addEventListener("click", () => overlay.remove());
+      document.body.appendChild(overlay);
     });
   });
 }
@@ -392,7 +484,7 @@ function initCursorFlower() {
   const tick = () => {
     x += (tx - x) * 0.28;
     y += (ty - y) * 0.28;
-    rot += (tx - x) * 0.04;
+    rot += 1.8;
     flower.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%) rotate(${rot}deg) scale(${pressed})`;
     requestAnimationFrame(tick);
   };
