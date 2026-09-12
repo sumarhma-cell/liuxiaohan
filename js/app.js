@@ -1,5 +1,4 @@
 const PORTRAIT = asset("关于/portrait.jpg");
-const ABOUT_ART = asset("关于/about-art.jpg");
 const EMAIL = "917422163@qq.com";
 
 const catLabel = (id) => CATEGORIES.find((c) => c.id === id)?.label ?? id;
@@ -163,13 +162,11 @@ function home() {
 
 function aboutBody() {
   return `
-    <div class="about-art reveal">
-      <svg class="doodle doodle-star" viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="#c9d2b8" d="M12 1.8l1.6 6.4 6.4 1.6-6.4 1.6-1.6 6.4-1.6-6.4-6.4-1.6 6.4-1.6z"/>
-      </svg>
-      <img src="${ABOUT_ART}" alt="" />
-      <svg class="doodle doodle-loop" viewBox="0 0 80 28" aria-hidden="true">
-        <path d="M4 18 C18 4, 36 26, 52 10 S74 6, 76 16" fill="none" stroke="#e8b7c8" stroke-width="2" stroke-linecap="round"/>
+    <div class="down-cue" aria-hidden="true">
+      <span class="down-cue-dot"></span>
+      <svg viewBox="0 0 24 64">
+        <path class="down-stem" d="M12 4 v40" fill="none" stroke="#4a2c24" stroke-width="1.4" stroke-linecap="round"/>
+        <path class="down-head" d="M5 36 L12 48 L19 36" fill="none" stroke="#4a2c24" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
     <div class="about-wrap reveal">
@@ -323,7 +320,7 @@ function about() {
           <a class="pill magnetic" href="#/work">查看作品</a>
         </div>
       </div>
-      <div class="hero-photo"><img src="${PORTRAIT}" alt="刘筱寒" /></div>
+      <div class="hero-photo hero-photo--about"><img src="${PORTRAIT}" alt="刘筱寒" /></div>
     </section>
     ${aboutBody()}
     ${valuesSection()}

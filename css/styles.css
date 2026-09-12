@@ -233,6 +233,14 @@ body.has-flower button {
   transition: transform 1.1s ease;
 }
 
+.hero-photo--about img {
+  object-position: center 18%;
+}
+
+.hero-photo--about:hover img {
+  transform-origin: center 18%;
+}
+
 @keyframes photoIn {
   from {
     opacity: 0;
@@ -633,16 +641,55 @@ body.has-flower button {
   color: var(--muted);
 }
 
-.about-art {
-  max-width: 920px;
-  margin: 56px auto 8px;
-  padding: 0 28px;
-  position: relative;
+.down-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 36px auto 8px;
 }
 
-.about-art img {
-  width: 100%;
-  border-radius: 2px;
+.down-cue-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--rose);
+  animation: cuePulse 1.6s ease-in-out infinite;
+}
+
+.down-cue svg {
+  width: 22px;
+  height: 58px;
+  animation: cueBounce 1.6s ease-in-out infinite;
+}
+
+.down-stem,
+.down-head {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: draw 1.1s ease forwards 0.2s;
+}
+
+@keyframes cueBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes cuePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.55);
+    opacity: 1;
+  }
 }
 
 .about-wrap {
@@ -934,11 +981,6 @@ body.has-flower button {
     min-height: 520px;
     order: -1;
   }
-
-  .doodle-petal,
-  .doodle-work {
-    display: none;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -952,6 +994,10 @@ body.has-flower button {
   .hero-photo img,
   .blob,
   .doodle,
+  .down-cue svg,
+  .down-cue-dot,
+  .down-stem,
+  .down-head,
   .blink,
   .scribble path,
   #app,
