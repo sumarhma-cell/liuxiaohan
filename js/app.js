@@ -47,8 +47,8 @@ function header(active) {
 function footer() {
   return `
     <section class="cta-band reveal">
-      <h2 data-parallax="-0.14">开放合作</h2>
-      <p data-parallax="0.1">品牌升级、活动视觉、插画与 IP，都可以从一封邮件开始。</p>
+      <h2>开放合作</h2>
+      <p>品牌升级、活动视觉、插画与 IP，都可以从一封邮件开始。</p>
       <a class="pill dark magnetic" href="mailto:${EMAIL}">联系合作</a>
     </section>
     <footer class="site-footer">
@@ -79,7 +79,7 @@ function card(p) {
   return `
     <a class="work-card reveal" href="#/work/${p.id}">
       <span class="work-card-frame">
-        <img src="${asset(p.cover)}" alt="${p.title}" data-parallax="0.22" />
+        <img src="${asset(p.cover)}" alt="${p.title}" />
       </span>
       <div class="meta">
         <h3>${p.title}</h3>
@@ -89,25 +89,45 @@ function card(p) {
   `;
 }
 
+function valuesSection() {
+  return `
+    <p class="kicker values-kicker reveal">What I’m into</p>
+    <section class="values">
+      <article class="value reveal">
+        <h3>Authentic aesthetics</h3>
+        <p>用手绘细节和可延展的系统，做出一眼能认出来、也能长期用下去的品牌语言。</p>
+      </article>
+      <article class="value reveal">
+        <h3>Cultivating creativity</h3>
+        <p>品牌、活动主视觉、插画和 IP 一起做，换媒介、换场景，把同一套气质铺开。</p>
+      </article>
+      <article class="value reveal">
+        <h3>Good-vibes process</h3>
+        <p>先把规范和风格定清楚，再对齐落地文件，让线上线下物料不用反复猜。</p>
+      </article>
+      <article class="value reveal">
+        <h3>An all-out delivery</h3>
+        <p>不只给一张主视觉。标识、物料、插画、界面和延展，尽量一次交付完整。</p>
+      </article>
+    </section>
+  `;
+}
+
 function home() {
-  const featured = HOME_ORDER.map((id) => PROJECTS.find((p) => p.id === id)).filter(Boolean);
   return `
     ${header("home")}
     <section class="split-hero">
       <div class="panel bg-dusty">
-        <div class="hero-copy" data-parallax="-0.2">
+        <div class="hero-copy">
           <p class="hero-kicker">Brand · Illustration · Visual · IP</p>
           <h1>做出让人记住的设计，<br />而不是被遗忘的画面。</h1>
           <a class="pill magnetic" href="#/work">查看作品</a>
         </div>
       </div>
-      <div class="hero-photo"><img src="${PORTRAIT}" alt="刘筱寒" data-parallax="0.32" /></div>
+      <div class="hero-photo"><img src="${PORTRAIT}" alt="刘筱寒" /></div>
     </section>
     ${aboutBody()}
-    <section class="section-pad">
-      <p class="kicker reveal">Selected work</p>
-      <div class="work-grid">${featured.map(card).join("")}</div>
-    </section>
+    ${valuesSection()}
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
         <span>品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · 品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · </span>
@@ -121,9 +141,7 @@ function home() {
 function aboutBody() {
   return `
     <div class="about-art reveal">
-      <div class="about-art-frame">
-        <img src="${ABOUT_ART}" alt="" data-parallax="0.18" />
-      </div>
+      <img src="${ABOUT_ART}" alt="" />
     </div>
     <div class="about-wrap reveal">
       <p class="hello">Hello</p>
@@ -184,13 +202,13 @@ function work(cat) {
     ${header(cat === "all" ? "work" : cat)}
     <section class="split-hero split-hero--short">
       <div class="panel bg-rose">
-        <div class="hero-copy" data-parallax="-0.16">
+        <div class="hero-copy">
           <h1>${title}</h1>
           <p class="lede">品牌、视觉、插画与 IP。点击封面进入完整项目。</p>
         </div>
       </div>
       <div class="panel bg-dusty">
-        <div class="hero-copy" data-parallax="0.16">
+        <div class="hero-copy">
           <h1>不求花哨。<br />只做能落地的系统。</h1>
         </div>
       </div>
@@ -220,7 +238,7 @@ function project(id) {
     .map(
       (src) =>
         `<button class="gallery-item reveal" data-src="${asset(src)}" type="button">
-          <img src="${asset(src)}" alt="${p.title}" data-parallax="0.12" />
+          <img src="${asset(src)}" alt="${p.title}" />
         </button>`
     )
     .join("");
@@ -248,34 +266,16 @@ function about() {
     ${header("about")}
     <section class="split-hero">
       <div class="panel bg-dusty">
-        <div class="hero-copy" data-parallax="-0.2">
+        <div class="hero-copy">
           <p class="hero-kicker">Brand · Illustration · Visual · IP</p>
           <h1>做出让人记住的设计，<br />而不是被遗忘的画面。</h1>
           <a class="pill magnetic" href="#/work">查看作品</a>
         </div>
       </div>
-      <div class="hero-photo"><img src="${PORTRAIT}" alt="刘筱寒" data-parallax="0.32" /></div>
+      <div class="hero-photo"><img src="${PORTRAIT}" alt="刘筱寒" /></div>
     </section>
     ${aboutBody()}
-    <p class="kicker values-kicker reveal">What I’m into</p>
-    <section class="values">
-      <article class="value reveal">
-        <h3>Authentic aesthetics</h3>
-        <p>用手绘细节和可延展的系统，做出一眼能认出来、也能长期用下去的品牌语言。</p>
-      </article>
-      <article class="value reveal">
-        <h3>Cultivating creativity</h3>
-        <p>品牌、活动主视觉、插画和 IP 一起做，换媒介、换场景，把同一套气质铺开。</p>
-      </article>
-      <article class="value reveal">
-        <h3>Good-vibes process</h3>
-        <p>先把规范和风格定清楚，再对齐落地文件，让线上线下物料不用反复猜。</p>
-      </article>
-      <article class="value reveal">
-        <h3>An all-out delivery</h3>
-        <p>不只给一张主视觉。标识、物料、插画、界面和延展，尽量一次交付完整。</p>
-      </article>
-    </section>
+    ${valuesSection()}
     ${footer()}
   `;
 }
@@ -284,7 +284,7 @@ function contact() {
   return `
     ${header("contact")}
     <section class="contact-hero">
-      <div class="hero-copy" data-parallax="-0.18">
+      <div class="hero-copy">
         <h1>Call me,<br />write me.</h1>
         <a class="mail" href="mailto:${EMAIL}">${EMAIL}</a>
         <div><a class="pill magnetic" href="#/work">先看作品</a></div>
@@ -340,52 +340,6 @@ function bindMagnetic() {
   });
 }
 
-function bindLightbox() {
-  document.querySelectorAll(".gallery-item").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const src = btn.getAttribute("data-src");
-      const overlay = document.createElement("div");
-      overlay.className = "lightbox";
-      overlay.innerHTML = `<img src="${src}" alt="" />`;
-      overlay.addEventListener("click", () => overlay.remove());
-      document.body.appendChild(overlay);
-    });
-  });
-}
-
-let onParallaxScroll = null;
-
-function bindParallax() {
-  if (onParallaxScroll) {
-    window.removeEventListener("scroll", onParallaxScroll);
-    onParallaxScroll = null;
-  }
-  const els = document.querySelectorAll("[data-parallax]");
-  if (!els.length) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-  let ticking = false;
-  const update = () => {
-    const vh = window.innerHeight;
-    els.forEach((el) => {
-      const speed = Number(el.dataset.parallax) || 0.2;
-      const rect = el.getBoundingClientRect();
-      if (rect.bottom < -120 || rect.top > vh + 120) return;
-      const progress = (rect.top + rect.height / 2 - vh / 2) / vh;
-      el.style.setProperty("--py", `${(progress * speed * 90).toFixed(1)}px`);
-    });
-    ticking = false;
-  };
-
-  onParallaxScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(update);
-  };
-  window.addEventListener("scroll", onParallaxScroll, { passive: true });
-  update();
-}
-
 function render() {
   const r = parseRoute();
   let html = "";
@@ -401,39 +355,45 @@ function render() {
   bindCardSpotlights();
   bindMagnetic();
   bindLightbox();
-  bindParallax();
 }
 
-function initCursorGlow() {
-  const glow = document.getElementById("cursorGlow");
-  if (!glow) return;
+function initCursorFlower() {
+  const flower = document.getElementById("cursorFlower");
+  if (!flower) return;
   const fine = window.matchMedia("(pointer: fine)").matches;
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!fine || reduce) {
-    glow.style.display = "none";
+    flower.style.display = "none";
     return;
   }
-  document.body.classList.add("has-glow");
+  document.body.classList.add("has-flower");
   let x = window.innerWidth / 2;
   let y = window.innerHeight * 0.28;
   let tx = x;
   let ty = y;
-  const root = document.documentElement;
+  let rot = 0;
+  let pressed = 1;
   window.addEventListener(
     "pointermove",
     (e) => {
       tx = e.clientX;
       ty = e.clientY;
-      glow.classList.add("is-on");
+      flower.classList.add("is-on");
     },
     { passive: true }
   );
-  window.addEventListener("pointerleave", () => glow.classList.remove("is-on"));
+  window.addEventListener("pointerdown", () => {
+    pressed = 0.86;
+  });
+  window.addEventListener("pointerup", () => {
+    pressed = 1;
+  });
+  window.addEventListener("pointerleave", () => flower.classList.remove("is-on"));
   const tick = () => {
-    x += (tx - x) * 0.18;
-    y += (ty - y) * 0.18;
-    root.style.setProperty("--glow-x", `${x}px`);
-    root.style.setProperty("--glow-y", `${y}px`);
+    x += (tx - x) * 0.28;
+    y += (ty - y) * 0.28;
+    rot += (tx - x) * 0.04;
+    flower.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%) rotate(${rot}deg) scale(${pressed})`;
     requestAnimationFrame(tick);
   };
   tick();
@@ -441,6 +401,6 @@ function initCursorGlow() {
 
 window.addEventListener("hashchange", render);
 window.addEventListener("DOMContentLoaded", () => {
-  initCursorGlow();
+  initCursorFlower();
   render();
 });
