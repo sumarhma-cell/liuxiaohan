@@ -234,11 +234,11 @@ body.has-flower button {
 }
 
 .hero-photo--about img {
-  object-position: center 18%;
+  object-position: center top;
 }
 
 .hero-photo--about:hover img {
-  transform-origin: center 18%;
+  transform-origin: center top;
 }
 
 @keyframes photoIn {
