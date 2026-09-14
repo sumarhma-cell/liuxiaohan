@@ -271,24 +271,12 @@ function project(id) {
   const i = PROJECTS.findIndex((x) => x.id === id);
   const prev = PROJECTS[(i - 1 + PROJECTS.length) % PROJECTS.length];
   const next = PROJECTS[(i + 1) % PROJECTS.length];
-  const total = String(p.images.length).padStart(2, "0");
-  const strip = p.images
-    .map(
-      (src, n) =>
-        `<button class="case-thumb" data-jump="shot-${n}" type="button" aria-label="第 ${n + 1} 张">
-          <img src="${asset(src)}" alt="" />
-        </button>`
-    )
-    .join("");
   const gallery = p.images
     .map(
-      (src, n) =>
-        `<figure class="case-plate reveal" id="shot-${n}">
-          <span class="case-num">${String(n + 1).padStart(2, "0")} / ${total}</span>
-          <button class="gallery-item" data-src="${asset(src)}" type="button">
-            <img src="${asset(src)}" alt="${p.title}" />
-          </button>
-        </figure>`
+      (src) =>
+        `<button class="gallery-item reveal" data-src="${asset(src)}" type="button">
+          <img src="${asset(src)}" alt="${p.title}" />
+        </button>`
     )
     .join("");
   const pdf = p.pdf
@@ -301,8 +289,7 @@ function project(id) {
       <h1>${p.title}</h1>
       <p>${p.summary}</p>
     </div>
-    <div class="case-strip" aria-hidden="true">${strip}</div>
-    <div class="gallery case-gallery">${gallery}${pdf}</div>
+    <div class="gallery">${gallery}${pdf}</div>
     <div class="pager">
       <a href="#/work/${prev.id}">← ${prev.title}</a>
       <a href="#/work/${next.id}">${next.title} →</a>
@@ -442,36 +429,6 @@ function bindLightbox() {
   });
 }
 
-function bindCaseThumbs() {
-  document.querySelectorAll(".case-thumb").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const id = btn.getAttribute("data-jump");
-      const target = id ? document.getElementById(id) : null;
-      if (!target) return;
-      target.scrollIntoView({ behavior: "smooth", block: "center" });
-      document.querySelectorAll(".case-thumb").forEach((el) => el.classList.remove("is-on"));
-      btn.classList.add("is-on");
-    });
-  });
-  const plates = [...document.querySelectorAll(".case-plate")];
-  const thumbs = [...document.querySelectorAll(".case-thumb")];
-  if (!plates.length || !thumbs.length) return;
-  thumbs[0]?.classList.add("is-on");
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const i = plates.indexOf(entry.target);
-        if (i < 0) return;
-        thumbs.forEach((el, n) => el.classList.toggle("is-on", n === i));
-      });
-    },
-    { threshold: 0.45 }
-  );
-  plates.forEach((el) => io.observe(el));
-}
-
 function render() {
   const r = parseRoute();
   let html = "";
@@ -487,7 +444,6 @@ function render() {
   bindCardSpotlights();
   bindMagnetic();
   bindLightbox();
-  bindCaseThumbs();
 }
 
 function initCursorFlower() {
