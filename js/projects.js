@@ -173,8 +173,14 @@ const PROJECTS = [
     category: "ip",
     summary: "参加学院 IP 形象加加。",
     cover: "作品/IP-加加.jpg",
-    pdf: "IP设计/IP-加加.pdf",
-    images: ["作品/IP-加加.jpg"],
+    images: [
+      "IP设计/IP-加加/加加-1.jpg",
+      "IP设计/IP-加加/加加-2.jpg",
+      "IP设计/IP-加加/加加-3.jpg",
+      "IP设计/IP-加加/加加-4.jpg",
+      "IP设计/IP-加加/加加-5.jpg",
+      "IP设计/IP-加加/加加-6.jpg",
+    ],
   },
 ];
 
