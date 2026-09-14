@@ -145,14 +145,14 @@ function home() {
     <div class="marquee-stack" aria-hidden="true">
       <div class="marquee">
         <div class="marquee-track">
-          <span>品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · 品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · </span>
-          <span>品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · 品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · </span>
+          <span>品牌 · 插画 · 视觉 · IP · 品牌 · 插画 · 视觉 · IP · </span>
+          <span>品牌 · 插画 · 视觉 · IP · 品牌 · 插画 · 视觉 · IP · </span>
         </div>
       </div>
       <div class="marquee marquee-alt">
         <div class="marquee-track reverse">
-          <span>nothing forgettable · everything considered · nothing forgettable · everything considered · </span>
-          <span>nothing forgettable · everything considered · nothing forgettable · everything considered · </span>
+          <span>BRAND · ILLUSTRATION · VISUAL · IP · BRAND · ILLUSTRATION · VISUAL · IP · </span>
+          <span>BRAND · ILLUSTRATION · VISUAL · IP · BRAND · ILLUSTRATION · VISUAL · IP · </span>
         </div>
       </div>
     </div>
@@ -213,7 +213,7 @@ function aboutBody() {
         </div>
         <div>
           <h3>工具</h3>
-          <p>Illustrator · Photoshop · Premiere · Codex</p>
+          <p>Illustrator · Photoshop · Premiere</p>
         </div>
       </div>
     </div>
@@ -327,14 +327,14 @@ function about() {
     <div class="marquee-stack" aria-hidden="true">
       <div class="marquee">
         <div class="marquee-track">
-          <span>品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · 品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · </span>
-          <span>品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · 品牌视觉 · LOGO · VIS · IP · 插画 · 物料 · </span>
+          <span>品牌 · 插画 · 视觉 · IP · 品牌 · 插画 · 视觉 · IP · </span>
+          <span>品牌 · 插画 · 视觉 · IP · 品牌 · 插画 · 视觉 · IP · </span>
         </div>
       </div>
       <div class="marquee marquee-alt">
         <div class="marquee-track reverse">
-          <span>nothing forgettable · everything considered · nothing forgettable · everything considered · </span>
-          <span>nothing forgettable · everything considered · nothing forgettable · everything considered · </span>
+          <span>BRAND · ILLUSTRATION · VISUAL · IP · BRAND · ILLUSTRATION · VISUAL · IP · </span>
+          <span>BRAND · ILLUSTRATION · VISUAL · IP · BRAND · ILLUSTRATION · VISUAL · IP · </span>
         </div>
       </div>
     </div>
