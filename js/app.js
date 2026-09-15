@@ -223,30 +223,53 @@ function aboutBody() {
 function work(cat) {
   const list = PROJECTS.filter((p) => cat === "all" || p.category === cat);
   const filters = [{ id: "all", label: "全部" }, ...CATEGORIES];
+  const heroes = {
+    all: {
+      left: "bg-rose",
+      right: "bg-dusty",
+      lede: "品牌、视觉、插画与 IP。点击封面进入完整项目。",
+      line: "不求花哨。<br />只做能落地的系统。",
+    },
+    brand: {
+      left: "bg-sand",
+      right: "bg-rose",
+      lede: "标识、物料、规范。把气质做成能长期用的系统。",
+      line: "先把调性定准。<br />再铺开一整套品牌。",
+    },
+    illustration: {
+      left: "bg-sage",
+      right: "bg-dusty",
+      lede: "角色、节气与贴纸。让插画能传播、也能延展。",
+      line: "画面要有温度。<br />也要一眼能认出来。",
+    },
+    visual: {
+      left: "bg-dusty",
+      right: "bg-sand",
+      lede: "论坛、课程与现场。主视觉到物料一次对齐。",
+      line: "一场活动一张脸。<br />线上线下同一套。",
+    },
+    ip: {
+      left: "bg-rose",
+      right: "bg-sage",
+      lede: "形象、性格与周边延展。让 IP 能被记住、被使用。",
+      line: "加加来了。<br />什么都加。",
+    },
+  };
+  const hero = heroes[cat] || heroes.all;
   const title = cat === "all" ? "作品" : catLabel(cat);
   return `
     ${header(cat === "all" ? "work" : cat)}
     <section class="split-hero split-hero--short">
-      <div class="panel bg-rose">
+      <div class="panel ${hero.left}">
         <span class="blob blob-work" aria-hidden="true"></span>
         <div class="hero-copy">
           <h1>${title}</h1>
-          <p class="lede">品牌、视觉、插画与 IP。点击封面进入完整项目。</p>
+          <p class="lede">${hero.lede}</p>
         </div>
       </div>
-      <div class="panel bg-dusty">
-        <svg class="doodle doodle-petal doodle-work" viewBox="0 0 32 32" aria-hidden="true">
-          <g fill="#f3d0d8">
-            <ellipse cx="16" cy="9" rx="5" ry="7"/>
-            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(72 16 16)"/>
-            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(144 16 16)"/>
-            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(216 16 16)"/>
-            <ellipse cx="16" cy="9" rx="5" ry="7" transform="rotate(288 16 16)"/>
-          </g>
-          <circle cx="16" cy="16" r="3.4" fill="#f6e7c8"/>
-        </svg>
+      <div class="panel ${hero.right}">
         <div class="hero-copy">
-          <h1>不求花哨。<br />只做能落地的系统。</h1>
+          <h1>${hero.line}</h1>
         </div>
       </div>
     </section>
@@ -401,6 +424,19 @@ function bindCardSpotlights() {
   });
 }
 
+function initScrollLine() {
+  const line = document.getElementById("scrollLine");
+  if (!line) return;
+  const update = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const t = max > 0 ? window.scrollY / max : 0;
+    line.style.transform = `scaleX(${Math.min(Math.max(t, 0), 1)})`;
+  };
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("hashchange", () => requestAnimationFrame(update));
+  update();
+}
+
 function bindMagnetic() {
   if (window.matchMedia("(pointer: coarse)").matches) return;
   document.querySelectorAll(".magnetic").forEach((el) => {
@@ -462,12 +498,23 @@ function initCursorFlower() {
   let ty = y;
   let rot = 0;
   let pressed = 1;
+  let sparkAt = 0;
   window.addEventListener(
     "pointermove",
     (e) => {
       tx = e.clientX;
       ty = e.clientY;
       flower.classList.add("is-on");
+      const now = performance.now();
+      if (now - sparkAt > 42) {
+        sparkAt = now;
+        const spark = document.createElement("span");
+        spark.className = "cursor-spark";
+        spark.style.left = `${e.clientX}px`;
+        spark.style.top = `${e.clientY}px`;
+        document.body.appendChild(spark);
+        window.setTimeout(() => spark.remove(), 700);
+      }
     },
     { passive: true }
   );
@@ -491,5 +538,6 @@ function initCursorFlower() {
 window.addEventListener("hashchange", render);
 window.addEventListener("DOMContentLoaded", () => {
   initCursorFlower();
+  initScrollLine();
   render();
 });
