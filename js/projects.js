@@ -1,5 +1,5 @@
 function asset(path) {
-  return path.split("/").map(encodeURIComponent).join("/");
+  return path.split("/").map(encodeURIComponent).join("/") + "?v=1335";
 }
 
 const CATEGORIES = [

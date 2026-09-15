@@ -56,13 +56,19 @@ button {
   top: 0;
   left: 0;
   z-index: 90;
-  width: 26px;
-  height: 26px;
+  width: 14px;
+  height: 14px;
   pointer-events: none;
   opacity: 0;
   transform: translate(-50%, -50%);
-  filter: drop-shadow(0 2px 4px rgba(232, 183, 200, 0.45));
-  transition: opacity 0.25s ease, width 0.2s ease, height 0.2s ease;
+}
+
+.cursor-sq {
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: #e8b7c8;
+  box-shadow: 0 0 0 1px rgba(255, 253, 251, 0.35);
 }
 
 .cursor-flower.is-on {
@@ -91,13 +97,11 @@ body.has-flower button {
 .cursor-spark {
   position: fixed;
   z-index: 89;
-  width: 7px;
-  height: 7px;
+  width: 5px;
+  height: 5px;
   margin: 0;
   pointer-events: none;
-  border-radius: 50%;
   background: #e8b7c8;
-  box-shadow: 0 0 10px rgba(232, 183, 200, 0.7);
   animation: sparkOut 0.65s ease forwards;
 }
 
