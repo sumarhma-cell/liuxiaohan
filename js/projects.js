@@ -1,5 +1,6 @@
-function asset(path) {
-  return path.split("/").map(encodeURIComponent).join("/") + "?v=1335";
+function asset(path, bust = true) {
+  const url = path.split("/").map(encodeURIComponent).join("/");
+  return bust ? `${url}?v=1752` : url;
 }
 
 const CATEGORIES = [
@@ -21,6 +22,10 @@ const PROJECTS = [
       "品牌设计/参加CANPLUS/2.canplus设计物料.jpg",
       "品牌设计/参加CANPLUS/3.canplus设计.jpg",
       "品牌设计/参加CANPLUS/4.canplus教师节礼盒.jpg",
+      {
+        src: "品牌设计/参加CANPLUS/5.参加年刊.png",
+        pdf: "品牌设计/参加CANPLUS/canplus-niankan.pdf",
+      },
     ],
   },
   {

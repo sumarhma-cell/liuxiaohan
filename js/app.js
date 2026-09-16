@@ -295,12 +295,18 @@ function project(id) {
   const prev = PROJECTS[(i - 1 + PROJECTS.length) % PROJECTS.length];
   const next = PROJECTS[(i + 1) % PROJECTS.length];
   const gallery = p.images
-    .map(
-      (src) =>
-        `<button class="gallery-item reveal" data-src="${asset(src)}" type="button">
+    .map((item) => {
+      const src = typeof item === "string" ? item : item.src;
+      const pdf = typeof item === "string" ? "" : item.pdf || "";
+      if (pdf) {
+        return `<button class="gallery-item gallery-pdf reveal" data-pdf="${asset(pdf, false)}" type="button">
           <img src="${asset(src)}" alt="${p.title}" />
-        </button>`
-    )
+        </button>`;
+      }
+      return `<button class="gallery-item reveal" data-src="${asset(src)}" type="button">
+          <img src="${asset(src)}" alt="${p.title}" />
+        </button>`;
+    })
     .join("");
   const pdf = p.pdf
     ? `<embed src="${asset(p.pdf)}" type="application/pdf" />`
@@ -455,11 +461,25 @@ function bindMagnetic() {
 function bindLightbox() {
   document.querySelectorAll(".gallery-item").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const src = btn.getAttribute("data-src");
+      const pdf = btn.getAttribute("data-pdf");
       const overlay = document.createElement("div");
       overlay.className = "lightbox";
-      overlay.innerHTML = `<img src="${src}" alt="" />`;
-      overlay.addEventListener("click", () => overlay.remove());
+      if (pdf) {
+        overlay.classList.add("lightbox--pdf");
+        overlay.innerHTML = `
+          <div class="pdf-frame">
+            <embed src="${pdf}#toolbar=1&navpanes=0" type="application/pdf" />
+          </div>
+          <a class="pdf-open" href="${pdf}" target="_blank" rel="noopener noreferrer">新窗口打开</a>
+        `;
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) overlay.remove();
+        });
+      } else {
+        const src = btn.getAttribute("data-src");
+        overlay.innerHTML = `<img src="${src}" alt="" />`;
+        overlay.addEventListener("click", () => overlay.remove());
+      }
       document.body.appendChild(overlay);
     });
   });
