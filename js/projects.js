@@ -1,6 +1,6 @@
 function asset(path, bust = true) {
   const url = path.split("/").map(encodeURIComponent).join("/");
-  return bust ? `${url}?v=1828` : url;
+  return bust ? `${url}?v=1829` : url;
 }
 
 const CATEGORIES = [

@@ -259,7 +259,7 @@ function work(cat) {
       left: "bg-dusty",
       right: "bg-rose",
       lede: "节日短片与展览宣传。可网页播放，完整成片也可跳转网盘。",
-      line: "画面会动。<br />故事也要被看见。",
+      line: "画面会动<br />故事也要被看见",
     },
   };
   const hero = heroes[cat] || heroes.all;

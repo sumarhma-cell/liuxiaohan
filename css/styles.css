@@ -171,9 +171,9 @@ body.has-flower button {
 
 .main-nav a {
   text-align: center;
-  padding: 13px 4px;
-  font-size: clamp(10px, 0.95vw, 12px);
-  letter-spacing: 0.08em;
+  padding: 13px 8px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
   white-space: nowrap;
   border-right: 1px solid var(--line);
   transition: background 0.25s ease, color 0.25s ease;
@@ -242,10 +242,11 @@ body.has-flower button {
   font-family: "Noto Serif SC", "Cormorant Garamond", serif;
   font-weight: 600;
   font-size: clamp(28px, 3.1vw, 44px);
-  line-height: 1.4;
+  line-height: 1.45;
   max-width: 10.5em;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 
 .split-hero p.lede {
@@ -1108,10 +1109,19 @@ body.has-flower button {
     letter-spacing: 0.12em;
   }
 
+  .main-nav {
+    grid-template-columns: repeat(auto-fit, minmax(5.6rem, 1fr));
+  }
+
   .main-nav a {
-    letter-spacing: 0.02em;
-    font-size: 10px;
-    padding: 12px 2px;
+    letter-spacing: 0.06em;
+    font-size: 12px;
+    padding: 12px 6px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .main-nav a:last-child {
+    border-right: 1px solid var(--line);
   }
 
   .split-hero {
@@ -1119,7 +1129,7 @@ body.has-flower button {
   }
 
   .split-hero--short {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .split-hero .panel {
@@ -1137,6 +1147,23 @@ body.has-flower button {
   .hero-photo {
     min-height: 520px;
     order: -1;
+  }
+}
+
+@media (orientation: landscape) {
+  .main-nav {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+
+  .main-nav a {
+    border-bottom: 0;
+    font-size: clamp(10px, 1.4vw, 12px);
+    letter-spacing: 0.06em;
+    padding: 12px 4px;
+  }
+
+  .main-nav a:last-child {
+    border-right: 0;
   }
 }
 
