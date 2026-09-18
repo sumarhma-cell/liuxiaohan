@@ -25,6 +25,7 @@ function header(active) {
     ["#/work/illustration", "插画设计", active === "illustration"],
     ["#/work/visual", "视觉设计", active === "visual"],
     ["#/work/ip", "IP设计", active === "ip"],
+    ["#/work/video", "视频剪辑", active === "video"],
   ];
   return `
     <header class="site-header">
@@ -51,7 +52,7 @@ function footer() {
       <svg class="scribble" viewBox="0 0 160 18" aria-hidden="true">
         <path d="M2 10 C28 2, 52 16, 80 9 S132 3, 158 11" fill="none" stroke="#3d2a16" stroke-width="1.4" stroke-linecap="round"/>
       </svg>
-      <p>品牌升级、活动视觉、插画与 IP，都可以从一封邮件开始。</p>
+      <p>品牌升级、活动视觉、插画、IP 与视频，都可以从一封邮件开始。</p>
       <a class="pill dark magnetic" href="https://wx.mail.qq.com/?cancel_login=true&from=upexpected_login_redirect" target="_blank" rel="noopener noreferrer">联系合作</a>
       <p class="cta-mail">${EMAIL}</p>
     </section>
@@ -59,7 +60,7 @@ function footer() {
       <div class="footer-grid">
         <div>
           <h4>刘筱寒</h4>
-          <p>品牌设计 · 插画设计 · 视觉设计 · IP设计<br />Personal Portfolio 2026</p>
+          <p>品牌设计 · 插画设计 · 视觉设计 · IP设计 · 视频剪辑<br />Personal Portfolio 2026</p>
         </div>
         <div>
           <h4>浏览</h4>
@@ -133,7 +134,7 @@ function home() {
           <circle cx="16" cy="16" r="3.4" fill="#f6e7c8"/>
         </svg>
         <div class="hero-copy">
-          <p class="hero-kicker">Brand · Illustration · Visual · IP</p>
+          <p class="hero-kicker">Brand · Illustration · Visual · IP · Video</p>
           <h1>做出让人记住的设计<br />而不是被遗忘的画面</h1>
           <a class="pill magnetic" href="#/work">查看作品</a>
         </div>
@@ -145,14 +146,14 @@ function home() {
     <div class="marquee-stack" aria-hidden="true">
       <div class="marquee">
         <div class="marquee-track">
-          <span>品牌 · 插画 · 视觉 · IP · 品牌 · 插画 · 视觉 · IP · </span>
-          <span>品牌 · 插画 · 视觉 · IP · 品牌 · 插画 · 视觉 · IP · </span>
+          <span>品牌 · 插画 · 视觉 · IP · 视频 · 品牌 · 插画 · 视觉 · IP · 视频 · </span>
+          <span>品牌 · 插画 · 视觉 · IP · 视频 · 品牌 · 插画 · 视觉 · IP · 视频 · </span>
         </div>
       </div>
       <div class="marquee marquee-alt">
         <div class="marquee-track reverse">
-          <span>BRAND · ILLUSTRATION · VISUAL · IP · BRAND · ILLUSTRATION · VISUAL · IP · </span>
-          <span>BRAND · ILLUSTRATION · VISUAL · IP · BRAND · ILLUSTRATION · VISUAL · IP · </span>
+          <span>BRAND · ILLUSTRATION · VISUAL · IP · VIDEO · BRAND · ILLUSTRATION · VISUAL · IP · VIDEO · </span>
+          <span>BRAND · ILLUSTRATION · VISUAL · IP · VIDEO · BRAND · ILLUSTRATION · VISUAL · IP · VIDEO · </span>
         </div>
       </div>
     </div>
@@ -227,7 +228,7 @@ function work(cat) {
     all: {
       left: "bg-rose",
       right: "bg-dusty",
-      lede: "品牌、视觉、插画与 IP。点击封面进入完整项目。",
+      lede: "品牌、视觉、插画、IP 与视频。点击封面进入完整项目。",
       line: "不求花哨。<br />只做能落地的系统。",
     },
     brand: {
@@ -254,6 +255,12 @@ function work(cat) {
       lede: "形象、性格与周边延展。让 IP 能被记住、被使用。",
       line: "加加来了。<br />什么都加。",
     },
+    video: {
+      left: "bg-dusty",
+      right: "bg-rose",
+      lede: "节日短片与展览宣传。可网页播放，完整成片也可跳转网盘。",
+      line: "画面会动。<br />故事也要被看见。",
+    },
   };
   const hero = heroes[cat] || heroes.all;
   const title = cat === "all" ? "作品" : catLabel(cat);
@@ -261,7 +268,6 @@ function work(cat) {
     ${header(cat === "all" ? "work" : cat)}
     <section class="split-hero split-hero--short">
       <div class="panel ${hero.left}">
-        <span class="blob blob-work" aria-hidden="true"></span>
         <div class="hero-copy">
           <h1>${title}</h1>
           <p class="lede">${hero.lede}</p>
@@ -298,10 +304,24 @@ function project(id) {
     .map((item) => {
       const src = typeof item === "string" ? item : item.src;
       const pdf = typeof item === "string" ? "" : item.pdf || "";
-      if (pdf) {
-        return `<button class="gallery-item gallery-pdf reveal" data-pdf="${asset(pdf, false)}" type="button">
+      const video = typeof item === "string" ? "" : item.video || "";
+      const link = typeof item === "string" ? "" : item.link || "";
+      if (video) {
+        return `<div class="gallery-video reveal">
+          <video src="${asset(video, false)}" poster="${asset(src)}" controls playsinline preload="metadata"></video>
+        </div>`;
+      }
+      if (link) {
+        return `<a class="gallery-item gallery-link reveal" href="${link}" target="_blank" rel="noopener noreferrer" aria-label="播放视频">
           <img src="${asset(src)}" alt="${p.title}" />
-        </button>`;
+          <span class="play-icon" aria-hidden="true"></span>
+        </a>`;
+      }
+      if (pdf) {
+        return `<a class="gallery-item gallery-pdf reveal" href="${asset(pdf, false)}" target="_blank" rel="noopener noreferrer">
+          <img src="${asset(src)}" alt="${p.title}" />
+          <span class="media-btn">打开年刊 PDF</span>
+        </a>`;
       }
       return `<button class="gallery-item reveal" data-src="${asset(src)}" type="button">
           <img src="${asset(src)}" alt="${p.title}" />
@@ -344,7 +364,7 @@ function about() {
           <circle cx="16" cy="16" r="3.4" fill="#f6e7c8"/>
         </svg>
         <div class="hero-copy">
-          <p class="hero-kicker">Brand · Illustration · Visual · IP</p>
+          <p class="hero-kicker">Brand · Illustration · Visual · IP · Video</p>
           <h1>做出让人记住的设计<br />而不是被遗忘的画面</h1>
           <a class="pill magnetic" href="#/work">查看作品</a>
         </div>
@@ -356,14 +376,14 @@ function about() {
     <div class="marquee-stack" aria-hidden="true">
       <div class="marquee">
         <div class="marquee-track">
-          <span>品牌 · 插画 · 视觉 · IP · 品牌 · 插画 · 视觉 · IP · </span>
-          <span>品牌 · 插画 · 视觉 · IP · 品牌 · 插画 · 视觉 · IP · </span>
+          <span>品牌 · 插画 · 视觉 · IP · 视频 · 品牌 · 插画 · 视觉 · IP · 视频 · </span>
+          <span>品牌 · 插画 · 视觉 · IP · 视频 · 品牌 · 插画 · 视觉 · IP · 视频 · </span>
         </div>
       </div>
       <div class="marquee marquee-alt">
         <div class="marquee-track reverse">
-          <span>BRAND · ILLUSTRATION · VISUAL · IP · BRAND · ILLUSTRATION · VISUAL · IP · </span>
-          <span>BRAND · ILLUSTRATION · VISUAL · IP · BRAND · ILLUSTRATION · VISUAL · IP · </span>
+          <span>BRAND · ILLUSTRATION · VISUAL · IP · VIDEO · BRAND · ILLUSTRATION · VISUAL · IP · VIDEO · </span>
+          <span>BRAND · ILLUSTRATION · VISUAL · IP · VIDEO · BRAND · ILLUSTRATION · VISUAL · IP · VIDEO · </span>
         </div>
       </div>
     </div>
@@ -459,27 +479,13 @@ function bindMagnetic() {
 }
 
 function bindLightbox() {
-  document.querySelectorAll(".gallery-item").forEach((btn) => {
+  document.querySelectorAll(".gallery-item[data-src]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const pdf = btn.getAttribute("data-pdf");
+      const src = btn.getAttribute("data-src");
       const overlay = document.createElement("div");
       overlay.className = "lightbox";
-      if (pdf) {
-        overlay.classList.add("lightbox--pdf");
-        overlay.innerHTML = `
-          <div class="pdf-frame">
-            <embed src="${pdf}#toolbar=1&navpanes=0" type="application/pdf" />
-          </div>
-          <a class="pdf-open" href="${pdf}" target="_blank" rel="noopener noreferrer">新窗口打开</a>
-        `;
-        overlay.addEventListener("click", (e) => {
-          if (e.target === overlay) overlay.remove();
-        });
-      } else {
-        const src = btn.getAttribute("data-src");
-        overlay.innerHTML = `<img src="${src}" alt="" />`;
-        overlay.addEventListener("click", () => overlay.remove());
-      }
+      overlay.innerHTML = `<img src="${src}" alt="" />`;
+      overlay.addEventListener("click", () => overlay.remove());
       document.body.appendChild(overlay);
     });
   });

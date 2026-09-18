@@ -1,6 +1,6 @@
 function asset(path, bust = true) {
   const url = path.split("/").map(encodeURIComponent).join("/");
-  return bust ? `${url}?v=1752` : url;
+  return bust ? `${url}?v=1828` : url;
 }
 
 const CATEGORIES = [
@@ -8,6 +8,7 @@ const CATEGORIES = [
   { id: "illustration", label: "插画设计" },
   { id: "visual", label: "视觉设计" },
   { id: "ip", label: "IP 设计" },
+  { id: "video", label: "视频剪辑" },
 ];
 
 const PROJECTS = [
@@ -24,7 +25,7 @@ const PROJECTS = [
       "品牌设计/参加CANPLUS/4.canplus教师节礼盒.jpg",
       {
         src: "品牌设计/参加CANPLUS/5.参加年刊.png",
-        pdf: "品牌设计/参加CANPLUS/canplus-niankan.pdf",
+        pdf: "canplus-niankan.pdf",
       },
     ],
   },
@@ -187,6 +188,32 @@ const PROJECTS = [
       "IP设计/IP-加加/加加-6.jpg",
     ],
   },
+  {
+    id: "womensday",
+    title: "妇女节视频",
+    category: "video",
+    summary: "AI生成，后期剪辑，三八妇女节主题短片，可在页面直接播放。",
+    cover: "作品/妇女节视频.jpg",
+    images: [
+      {
+        src: "作品/妇女节视频.jpg",
+        video: "视频剪辑/妇女节视频/3.8妇女节.mp4",
+      },
+    ],
+  },
+  {
+    id: "fangsi",
+    title: "「放肆」展览宣传视频",
+    category: "video",
+    summary: "展览宣传成片。完整视频通过网盘观看。",
+    cover: "作品/「放肆」展览宣传视频.jpg",
+    images: [
+      {
+        src: "视频剪辑/「放肆」展览宣传视频/视频截图-3.jpg",
+        link: "https://pan.baidu.com/s/1qZKEseHSa4UA25qz6dheAA?pwd=i9ca",
+      },
+    ],
+  },
 ];
 
 const HOME_ORDER = [
@@ -196,6 +223,8 @@ const HOME_ORDER = [
   "stickers",
   "hongyuan",
   "anniversary",
+  "womensday",
+  "fangsi",
   "solar",
   "map",
 ];
